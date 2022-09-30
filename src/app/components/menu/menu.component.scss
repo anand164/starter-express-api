@@ -1,0 +1,30 @@
+li .nav-link{
+    position: relative;
+    cursor: pointer;
+}
+.services:hover .submenu{
+    display: block;
+}
+.submenu::before{
+    content: "";
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 13px solid #ffffff;
+    position: absolute;
+    left: 24px;
+    top: -13px;
+}
+.submenu{
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #cccccc85;
+    border-radius: 2px;
+    padding: 20px 40px;
+    box-shadow: 0 0 22px 0 rgb(0 0 0 / 18%);
+    transition: all 1s;
+    z-index: 1;
+}
+.head_1{
+    min-width: 250px;
+}
