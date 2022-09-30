@@ -1,0 +1,105 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>404 Page | HR Management</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.css" />
+   <style>
+   .error-pagewrap {
+    min-height: 100vh;
+    text-align: center;
+}
+.error-pagewrap:before {
+    content: '';
+    height: 100vh;
+    width: 1px;
+}
+
+.error-page-int, .error-pagewrap:before {
+    vertical-align: middle;
+    display: inline-block;
+}
+.error-page-int  {
+    max-width: 500px;
+    padding: 20px 0;
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+}
+.content-error a{
+	margin:5px 5px;
+	display:inline-block;
+}
+.content-error h1 {
+    font-size: 35px;
+    color: #444;
+	text-transform:uppercase;
+}
+.content-error .counter {
+    color: #006DF0;
+}
+.content-error {
+    text-align: center;
+    margin: 0px 20px;
+}
+.content-error p {
+    font-size: 14px;
+    color: #444;
+    line-height: 24px;
+}
+.content-error a {
+    display: inline-block;
+    margin: 0px 5px;
+    font-weight: 600;
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 3px;
+    background: #006DF0;
+    transition: all .4s ease 0s;
+}
+   </style>
+</head>
+<body>
+    <div class="error-pagewrap">
+		<div class="error-page-int">
+			<div class="content-error">
+				<h1>ERROR <span class="counter counter-count"> 404</span></h1>
+				<p>Sorry, but the page you are looking for has note been found. Try checking the URL for the error, then hit the refresh button on your browser or try found something else in our app.</p>
+				<a id="close" href="#">Close</a>
+			</div>
+		</div>   
+    </div>
+    <!-- jquery
+		============================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+   
+    <script>
+      $('.counter-count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 1500,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+        $('#close').click(()=>{
+             window.close();
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Chat IO</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mbd.css">
+    <link rel="stylesheet" href="/css/mdb.css">
+
+  </head>
+  <body>      
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-heading mt-2">
+              <h2 class="text-center">Chat App</h2>
+          </div>
+        <div class="modal-body text-center">
+        <div class="text-center">
+         <div class="social-buttons">
+            <div><span>Login</span> via</div>
+          <a class="social" id="facebook" href="http://localhost:8080/auth/facebook">
+            <img class="loginBtn" src="img/facebookLoginBtn.png" alt="Sign-In with Facebook">
+          </a>
+          <a class="social" id="facebook" href="http://localhost:8080/auth/linkedin">
+            Linked In
+          </a>
+
+          <a class="social" href="http://localhost:8080/auth/twitter">
+            <img class="loginBtn" src="img/twitterLoginBtn.png" alt="Sign-In with Twitter">
+          </a>
+         </div>
+        <div class="form-line"></div>
+
+        <div class="mt-3">
+            <form action="/register" class="register-form _form" method="post" >
+              <p class="text-center fa-5x">🙂</p>
+              <p class="text-info">Wow signup with email only...</p>
+              <input type="email" class="form-control mt-1" name="email" placeholder="email" required/>
+              <button class="btn btn-sm btn-info mt-3" type="submit">Signup</button>
+              <p class="message">Already registered? <a href="#">Sign In</a></p>
+              <% if (errors != null && showRegisterForm != null && showRegisterForm === true) { %>
+                <% errors.forEach(function(err){ %>
+                  <p class="message error"><%= err %></p>
+                <% }); %>
+              <% } %>
+            </form>
+            <form action="/login" class="login-form _form" method="post">
+              <input type="text" class="form-control mt-1" name="username" placeholder="Enter username or email" required/>
+              <input type="password" class="form-control mt-2" name="password" placeholder="password" required/>
+              <button class="btn btn-sm btn-info mt-3" type="submit">Signin</button>
+              <a class="btn btn-link btn-sm mt-3 p-0 text-info"data-toggle="modal" data-target="#forgetmodal">Problem with loging.?</a>
+              <p class="message"></p>
+              <p class="message">Not registered? <a href="#">Create an account</a></p>
+              <% if (errors != null && showRegisterForm == null) { %>
+                <% errors.forEach(function(err){ %>
+                  <p class="message error"><%= err %></p>
+                <% }); %>
+              <% } if (success != null && showRegisterForm == null) { %>
+                <p class="message success"><%= success %></p>
+              <% } %>
+            </form>
+            <% if(emailStatus == 'EMAIL_SENT'){%>
+              <p class="text-success">Email has been sent to your email, Please verify email.</p>
+            <%}%> 
+            <% if(emailStatus == 'EMAIL_SEND_FAILED'){%>
+              <p class="text-danger">Something went wrong, Registration failed.</p>
+            <%}%>
+            <% if(emailStatus == 'EMAIL_NOT_FOUND'){%>
+              <p class="text-danger">Email Not Found</p>
+            <%}%>
+            <% if(emailStatus == 'EMAIL_INVALID'){%>
+              <p class="text-danger">Enter Valid Email</p>
+            <%}%>
+        </div>
+      </div>
+      </div>
+    </div> <!-- end form -->
+    </div> <!-- end login container -->
+    <!-- Central Modal Small -->
+<div class="modal fade" id="forgetmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+
+<div class="modal-dialog modal-sm" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title w-100" id="myModalLabel">Forget Password</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form action="/forget-password" method="get">
+    <div class="modal-body">
+     
+        <input class="form-control" type="email" name="email" autofocus required>
+        <input type="hidden" value="user" name="accType">
+      </div>
+     <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-sm">Send Reset Mail</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+     </div>
+    </form>
+     
+    
+  </div>
+</div>
+</div>
+    <% if(showRegisterForm != null && showRegisterForm === true) { %>
+        <script>
+          console.log('showRegisterForm......................')
+          setTimeout(() => {
+            $('.register-form').show(); $('.login-form, .social-buttons, .form-line').hide();
+          }, 0);
+        </script>
+    <% } %>
+    <script>
+      $('.register-form').hide()
+        $('.message a').click(function(){
+            $('._form , .social-buttons, .form-line').animate({height: "toggle", opacity: "toggle"}, "slow");
+          });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>App | Chat</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+    <div class="jumbotron m-0 p-0 bg-transparent">
+            <div class="row m-0 p-0 position-relative">
+                <div class="col_4 ">
+                        <div class="b1"  style="display: grid">
+                            <div class="p-1" >
+                                    <div class="form-inline">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <img class="b2" style="width: 40px; height: 40px; border-radius: 50%;" src="https://i.pinimg.com/736x/5c/24/69/5c24695df36eee73abfbdd8274085ecd--cute-anime-guys-anime-boys.jpg" />
+                                            </a>                                
+                                        </li>
+                                        <li class="mt-1" style="display: flex">
+                                                <div class="searchbox">
+                                                    <button  class="btn-search">
+                                                            <img src="https://img.icons8.com/cotton/24/000000/search--v2.png">
+                                                        </button>
+                                                    <input id="search" type="text" placeholder="Search..." name="search" class="search">
+                                                    
+                                                </div>
+                                                
+                                                
+                                                <div id="Modal" class="search-modal">
+                                                        <div class="search-modal-header">
+                                                                <h3>Search</h3>
+                                                                <span id="close"><img  src="https://img.icons8.com/cotton/24/000000/cancel--v2.png"></span>
+                                                        </div>
+                                                        <div class="search-modal-body">
+                                                                <div class="user">
+                                                                        <h3 onclick="sendInvitationTo('anand')">Type to search user</h3>
+                                                                     </div>
+                                                        </div>
+                                                        
+                                                </div>  
+                                        </li>
+                                        <li class="dropdown float-right">
+                                            <a id="dropdownMenuLink" data-toggle="dropdown" class="btn btn-sm float-right text-secondary" role="button"><h5><i class="fa fa-ellipsis-v" title="Ayarlar!" aria-hidden="true"></i>&nbsp;</h5></a>
+                                            <div class="dropdown show">
+                                                    <div class="dropdown-menu dropdown-menu-right border p-0" aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item p-2 text-secondary" href="#"> <i class="fa fa-user m-1" aria-hidden="true"></i> Profile </a>
+                                                        <hr  class="my-1"></hr>
+                                                        <a class="dropdown-item p-2 text-secondary" href="/logout"> <i class="fa fa-sign-out m-1" aria-hidden="true"></i> Logout </a>
+                                                    </div>
+                                                </div>
+                                        </li>
+                                    </ul> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    <div class="contacts">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item w-50">
+                                      <a class="nav-link active" id="recent-tab" data-toggle="tab" href="#recent" role="tab" aria-controls="recent" aria-selected="true">Recent</a>
+                                    </li>
+                                    <li class="nav-item w-50">
+                                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contacts</a>
+                                    </li>
+                                  </ul>
+                                  <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+                                            <div class="dropdown users p-1">
+                                                    <img class="float-left" style="width: 50px; height: 50px; border-radius: 50%;" src="https://i.pinimg.com/736x/5c/24/69/5c24695df36eee73abfbdd8274085ecd--cute-anime-guys-anime-boys.jpg" />
+                                                    <h6 class="float-left" style="margin: 0px; margin-left: 10px;"> Yusuf Bulgurcu  </br><small>  <i class="fa fa-circle text-success"></i> Online</small> </h6>
+                                                    <a id="d1" data-toggle="dropdown" class="float-right text-secondary" role="button"><h5><i class="fa fa-ellipsis-v" title="Ayarlar!" aria-hidden="true"></i>&nbsp;</h5></a>
+                                                    <div class="dropdown show">
+                                                        <div class="dropdown-menu dropdown-menu-right border p-0" aria-labelledby="d1">
+                                                            <a class="dropdown-item p-2" href="#"> <i class="fa fa-user m-1" aria-hidden="true"></i> contact </a>
+                                                            <hr class="my-1"></hr>
+                                                            <a class="dropdown-item p-2" href="#"> <i class="fa fa-trash m-1" aria-hidden="true"></i> Delete </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                            <div class="dropdown users p-1">
+                                                    <img class="float-left" style="width: 50px; height: 50px; border-radius: 50%;" src="https://i.pinimg.com/736x/5c/24/69/5c24695df36eee73abfbdd8274085ecd--cute-anime-guys-anime-boys.jpg" />
+                                                    <h6 class="float-left" style="margin: 0px; margin-left: 10px;"> Tim Senya  </br><small>  <i class="fa fa-circle text-danger"></i> Offline</small> </h6>
+                                                    <a id="d1" data-toggle="dropdown" class="float-right text-secondary" role="button"><h5><i class="fa fa-ellipsis-v" title="Ayarlar!" aria-hidden="true"></i>&nbsp;</h5></a>
+                                                    <div class="dropdown show">
+                                                        <div class="dropdown-menu dropdown-menu-right border p-0" aria-labelledby="d1">
+                                                            <a class="dropdown-item p-2" href="#"> <i class="fa fa-user m-1" aria-hidden="true"></i> contact </a>
+                                                            <hr class="my-1"></hr>
+                                                            <a class="dropdown-item p-2" href="#"> <i class="fa fa-trash m-1" aria-hidden="true"></i> Delete </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                  </div>
+                        
+                    </div>
+                </div>
+                <div class="col_8 p-0 m-0 ">
+                <div class="card border-0 rounded" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 6px 10px 0 rgba(0, 0, 0, 0.01);     overflow: hidden;
+                height: 100vh;">
+    
+                    <div class="card-header p-1 bg-light border border-top-0 border-left-0 border-right-0" style="color: rgba(96, 125, 139,1.0);">
+                    
+                    <img class="rounded float-left" style="width: 50px; height: 50px;" src="https://i.pinimg.com/736x/5c/24/69/5c24695df36eee73abfbdd8274085ecd--cute-anime-guys-anime-boys.jpg" />
+                    
+                    <h6 class="float-left" style="margin: 0px; margin-left: 10px;"> Yusuf Bulgurcu  </br><small> Online </small></h6>
+                        
+                        <div class="dropdown show">
+    
+                            <a id="dropdownMenuLink" data-toggle="dropdown" class="btn btn-sm float-right text-secondary" role="button"><h5><i class="fa fa-ellipsis-v" title="Ayarlar!" aria-hidden="true"></i>&nbsp;</h5></a>
+    
+                        <div class="dropdown-menu dropdown-menu-right border p-0" aria-labelledby="dropdownMenuLink">
+                            
+                            <a class="dropdown-item p-2 text-secondary" href="#"> <i class="fa fa-user m-1" aria-hidden="true"></i> Profile </a>
+                            <hr class="my-1"></hr>
+                            <a class="dropdown-item p-2 text-secondary" href="#"> <i class="fa fa-trash m-1" aria-hidden="true"></i> Delete </a>
+    
+                        </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="card bg-sohbet border-0 m-0 p-0" style="height: 90vh;overflow: auto;">
+                    <div id="sohbet" class="card border-0 m-0 p-0 position-relative bg-transparent" style="overflow-y: auto; height: 100vh;">
+                
+                    <div class="balon1 p-2 m-0 position-relative" data-is="You - 3:20 pm">
+                    
+                        <a class="float-right"> Hey there! What's up? </a>
+                        
+                    </div>
+                    
+                    <div class="balon2 p-2 m-0 position-relative" data-is="Yusuf - 3:22 pm">
+                    
+                        <a class="float-left sohbet2"> Checking out iOS7 you know.. </a>
+                        
+                    </div>
+                    
+                    <div class="balon1 p-2 m-0 position-relative" data-is="You - 3:23 pm">
+                    
+                        <a class="float-right"> Check out this bubble! </a>
+                        
+                    </div>
+                    
+                    <div class="balon2 p-2 m-0 position-relative" data-is="Yusuf - 3:26 pm">
+                    
+                        <a class="float-left sohbet2"> It's pretty cool! </a>
+                        
+                    </div>
+                    <div class="balon2 p-2 m-0 position-relative" data-is="Yusuf - 3:22 pm">
+                    
+                        <a class="float-left sohbet2"> Checking out iOS7 you know.. </a>
+                            
+                    </div>
+                    
+                    <div class="balon1 p-2 m-0 position-relative" data-is="You - 3:23 pm">
+                    
+                        <a class="float-right"> Check out this bubble! </a>
+                        
+                    </div>
+                    
+                    <div class="balon2 p-2 m-0 position-relative" data-is="Yusuf - 3:26 pm">
+                    
+                        <a class="float-left sohbet2"> It's pretty cool! </a>
+                        
+                    </div>
+                    
+                    <div class="balon1 p-2 m-0 position-relative" data-is="You - 3:28 pm">
+                    
+                        <a class="float-right"> Yeah it's pure CSS & HTML </a>
+                        
+                    </div>
+                    
+                    <div class="balon2 p-2 m-0 position-relative" data-is="Yusuf - 3:33 pm">
+                    
+                        <a class="float-left sohbet2"> Wow that's impressive. But what's even more impressive is that this bubble is really high. </a>
+                        
+                    </div>
+    
+                    </div>
+                    </div>
+    
+                    <div class="w-100 card-footer p-0 bg-light border border-bottom-0 border-left-0 border-right-0">
+                        <form class="m-0 p-0" action="" method="POST" autocomplete="off">
+                            <div class="row m-0 p-0">
+                            <div class="col-9 m-0 p-1">
+                            
+                                <input id="text" class="mw-100 border rounded form-control" type="text" name="text" title="Type a user..." placeholder="Type a user..." required>
+                                
+                            </div>
+                            <div class="col-3 m-0 p-1">
+                            
+                                <button class="btn btn-outline-secondary rounded border w-100" title="Gönder!" style="padding-right: 16px;"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        
+                            </div>
+                            </div>
+                    
+                    </form>
+                        
+                    </div>
+    
+                </div>
+                </div>
+                
+            </div>
+    </div>
+    
+    
+    
+    
+    
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/custom.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> <%= title %> | Chat App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.css" /> -->
+   <style>  
+   body{
+    font-family: 'Roboto', sans-serif;font-weight:400;background:#F6F8FA;
+   }
+   .all-content-wrapper {
+    margin: 4% 10%;
+    transition: all 0.3s;
+}
+.sparkline8-list, .sparkline9-list, .sparkline7-list, .sparkline10-list, .sparkline12-list, .sparkline13-list, .sparkline14-list, .sparkline13-list, .sparkline11-list, .x-editable-list, .code-editor-single, .blog-details-inner, .charts-single-pro, .about-sparkline, .sparkline-list, .button-ad-wrap, .tab-content-details, .sparkline16-list, .sparkline15-list, .tinymce-single, .single-product-item, .courses-inner, .single-latest-item, .product-payment-inner-st, .profile-info-inner, .contact-panel, .widget-int-shape, .social-media-edu{
+	padding:20px;
+	background:#fff;
+}
+._head{
+  text-shadow: 2px 2px #ccc;
+}
+.has_error{
+  border-color: #ff7272 !important;
+}
+.has_error:focus{
+  border-color: #f53d4e !important;
+  box-shadow: 0 0 0 0.2rem rgba(245, 2, 25, 0.32) !important;
+}
+.has_success{
+  border-color: #2acc4f;
+}
+.has_success:focus{
+  border-color: #2acc4f;
+  box-shadow: 0 0 0 0.2rem rgba(1, 255, 59, 0.4);
+}
+
+.card{
+  padding: 10px;
+}
+._eye{
+  position: absolute;
+  right: 40px;
+  margin-top: -27px;
+  color: #007bff;
+}
+.mt-12{margin-top: 12px !important }
+.mt-15{margin-top: 15px !important }
+.mt-18{margin-top: 18px !important }
+.mt-20{margin-top: 20px !important }
+.mt-22{margin-top: 22px !important }
+.mt-25{margin-top: 25px !important }
+.mt-30{margin-top: 30px !important }
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+ .card{
+   max-width: 50%;
+ }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .card{
+   max-width: 50%;
+ }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  
+  .card{
+   max-width: 60%;
+ }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  .card{
+   max-width: 70%;
+ }
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+ 
+  .card{
+   max-width: 90%;
+ }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  .card{
+   max-width: 90%;
+ } ._head{
+  font-size: 24px;
+ }
+  
+}
+   </style>
+</head>
+
+<body>
+    
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+       
+        <!-- Password meter Start -->
+        <div class="password-meter-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 card">
+
+                        <% if (linkExpired) { %>
+                          <div class="main-sparkline12-hd">
+                              <h3 class="text-default font-weight-bold _head">Link Expired</h3> 
+                              <div class="mt-30">
+                                <p class="text-info">
+                                    It seems like Your this link is expired you can request new link!!
+                                </p>
+                              </div>
+                              <div class="form-group mt-20">
+                                  <button class="btn btn-primary _close">Close</button>
+                                </div>
+                          </div>
+                      <% }  else {%>
+                        <div class="sparkline12-list responsive-mg-b-30">
+                            <input type="hidden" id="token" value="<%= eToken %>"/>
+                            <input type="hidden" id="accType" value="<%= accType %>"/>
+
+                            <div class="sparkline12-hd">
+                                <div class="main-sparkline12-hd">
+                                    <h3 class="text-info font-weight-bold _head">New Password</h3> 
+                                    <span class="text-success">Enter New Password</span>
+                                </div>
+                            </div>
+                            <div class="sparkline12-graph">
+                                <div id="pwd-container1">
+                                    <div class="form-group">
+                                        <label for="newpass">New Password</label>
+                                        <input type="password" class="form-control newpass" id="newpass" placeholder="Password" value="">
+                                        <span class="fa fa-fw fa-eye _eye field-icon toggle-password"></span>
+                                      </div>
+                                    <div class="form-group mg-b-pass">
+                                        <div class="pwstrength_viewport_progress"></div>
+                                    </div>
+                                </div>
+                        
+                                <div class="form-group mt-15">
+                                   <button id="btnsubmit" class="btn btn-success"
+                                    data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Activating and setting-up Password">
+                                    Reset Password</button>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Password meter End-->
+    </div>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pwstrength-bootstrap/3.0.1/pwstrength-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script> //confpassword
+    // window.addEventListener("beforeunload", function (e) {
+    //   var confirmationMessage = "\o/";
+
+    //   (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    //   return confirmationMessage;                            //Webkit, Safari, Chrome
+    //   });
+                var options1 = {};
+            options1.ui = {
+                container: "#pwd-container1",
+                showVerdictsInsideProgressBar: true,
+                viewports: {
+                    progress: ".pwstrength_viewport_progress"
+                }
+            };
+            options1.common = {
+                debug: false,
+            };
+            $('.newpass').pwstrength(options1);
+            // alert(window.location.hostname)
+            $('._close').click(()=>{
+              window.close();
+            })
+            let newpass = $('#newpass')
+            const token = $('#token');
+            let btnsubmit = $('#btnsubmit')
+            let accType= $('#accType');
+            btnsubmit.prop('disabled',true)
+            // let BASE_URL = "https://hrmbackend.herokuapp.com";
+            let BASE_URL = "http://localhost:8080";
+            $(".toggle-password").click(function() {
+              $(this).toggleClass("fa-eye fa-eye-slash");
+              if (newpass.attr("type") == "password") {
+                newpass.attr("type", "text");
+              } else {
+                newpass.attr("type", "password");
+              }
+            });
+            btnsubmit.on('click', function() {
+              let body = {
+                 password : newpass.val().trim(),
+                 token : token.val(),
+                 accType:accType.val()
+              };
+              console.log('going to set ', body);
+              
+              var $this = $(this);
+              $this.button('loading');
+              axios.post(BASE_URL+'/candidate/forget-password',body).then(result=>{
+                $this.button('reset');
+               let data = result.data;               
+                  if(data.API_STATUS){
+                    if(data.msg == 'PASSWORD_UPDATED'){
+                      iziToast.success({
+                      title: 'Your Password is Updated Successfully',
+                      message: 'This Window will Auto Close, Please Remember Password',
+                      timeout: 10000,
+                      overlay : true,
+                      position :'center',
+                      onClosing: function(instance, toast, closedBy){
+                      console.info('Closing | closedBy: ' + closedBy);
+                      window.open('', '_self', ''); window.close();
+                       }
+                      });
+                      // window.close();
+                    } else{
+                      console.log('data.API_STATUS true , not updated');
+                    }
+                  } else if(data.validationError) {
+                    console.log('error !!!',data.validationError);
+                  } else if(data.error == 'INVALID_TOKEN') {
+                    console.log('error !!!',data.error);
+                  }  else if(data.error == 'USER_NOT_UPDATED') {
+                    console.log('error !!!',data.error);
+                  }
+              }).catch(err=>{
+                console.log('erorr', err)
+                $this.button('reset');
+              })
+            });
+            
+            function validatePass(){
+              if(newpass.val().length>4 && newpass.val().length<21){
+                console.log('going to test..insidelingth');
+                let pass = newpass.val().trim();
+                var Exp = /^(?=[^\d_].*?\d)\w(\w|[!@#$%]){5,20}$/;
+                if(pass.match(Exp)){
+                  newpass.addClass('has_success');
+                  newpass.removeClass('has_error');
+                  return true;
+                } else{
+                  newpass.addClass('has_error');
+                return false;
+                }
+                
+              }else{
+                newpass.addClass('has_error');
+                return false;
+              }
+            }
+            newpass.keyup(()=>{
+              if(!validatePass()){
+                newpass.attr(':state',false)
+                  iziToast.error({
+                  title: 'Enter Strong Password',
+                  message: 'Password should be alphanumeric of length 6-15',
+                  displayMode: 1, 
+                });
+                btnsubmit.prop('disabled',true)
+              } else {
+                btnsubmit.prop('disabled',false)
+               iziToast.destroy();
+              }
+            })
+            
+    </script>
+   
+</body>
+
+</html>

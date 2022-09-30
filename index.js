@@ -1,76 +1,77 @@
-/**
- * This file contains code for creating a node proxy-server to avoid the CORS error
- * This file contains code for encrypting password before sending it to the server.
- * This file contains code for linkedin login service
- */
-const express = require('express'); // Used for creating web server
-const path = require('path'); // Used to traverse through file system
-const compression = require('compression'); // Compression library for compressing response sent from the server
-const app = express();
+'use strict';
 
-
-// Use the compression middleware to compress the response
-app.use(compression());
-
-
-/**
- * Add the deafult headers in the response
- */
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, token_type, access_token, refresh_token, expires_in, date');
-    res.header('Access-Control-Expose-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, token_type, access_token, refresh_token, expires_in, date');
-
-    //intercepts OPTIONS method
-    if ('OPTIONS' === req.method) {
-      //respond with 200
-      res.sendStatus(200);
-    }
-    else {
-    //move on
-      next();
-    }
-});
-
-// Parse request body in JSON
-app.use(express.json());
-
-
-// Run the app by serving the static files
-// in the dist directory
-app.use(express.static(__dirname + '/dist'));
-
-// For all GET requests, send back index.html
-// so that PathLocationStrategy can be used
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
-});
-
-// Required certificate files
-// let key = fs.readFileSync('ssl/private.key'); // Replace the file name with the private key file name
-// let cert = fs.readFileSync( 'ssl/primary.crt' ); // Replace the file name with the primary key file name
-// let ca = fs.readFileSync( 'ssl/intermediate.crt' ); // Replace the file with the intermediate certificate file name
-
-// Create option for https server
-// let options = {
-//     key: key,
-//     cert: cert,
-//     ca: ca
-// };
-
-// // Start https server
-// https.createServer(options, app).listen(443, () => {
-//     console.log(`Server listening on port ... ${443}`);
+// Chat application dependencies
+var express 	= require('express');
+var app  		= express();
+var path 		= require('path');
+var flash 		= require('connect-flash');
+const winston = require('winston')
+// Chat application components
+// require('./app/startup/logging')();
+ require('./app/startup/routes')(app);
+const error = require('./app/startup/error');
+var session 	= require('./app/session');
+var passport    = require('./app/auth');
+const ResumeParser = require('simple-resume-parser');
+// const resume = new ResumeParser("./PrateekDuggalDotNetResume.docx");
+// resume.parseToJSON()
+// .then(data => {
+//   console.log('Yay! ', data);
+// })
+// .catch(error => {
+//   console.error(error);
 // });
+// Set the port number
+var port = process.env.PORT || 8080;
 
-// Start http server
-// http.createServer(app).listen(80, () => {
-//     console.log(`Server listening on port ... ${80}`);
+// View engine setup
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'ejs');
+
+// Middlewares
+app.use(express.static('public'));
+
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+app.use(error)
+// Middleware to catch 404 errors
+// app.use(function(req, res, next) {
+//   res.status(404).sendFile(process.cwd() + '/app/views/404.ejs');
 // });
+app.listen(port, () => winston.info(`Listening on port ${port}...`));
+// require('./app/test')
 
-// Start the server on already defined port or 3000
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server listening... ${process.env.PORT || 3000}`);
-});
 
+// var userTable = [
+//     {memberID : 1, parentId:null, amount:200, otherInfo:"blah"},
+//     {memberID : 2, parentId:1, amount:300, otherInfo:"blah1"},
+//     {memberID : 3, parentId:1, amount:208, otherInfo:"blah2"},
+//     {memberID : 5, parentId:2, amount:500, otherInfo:"blah3"},
+//     {memberID : 6, parentId:2, amount:100, otherInfo:"blah4"},
+//     {memberID : 7, parentId:3, amount:500, otherInfo:"blah5"},
+//     {memberID : 8, parentId:3, amount:700, otherInfo:"blah3"},
+
+//     ];
+
+// function recursiveFun (userTable, user){        
+//     user.subChild = userTable.filter(x=>x.parentId == user.memberID)
+
+//     user.subChild.forEach((u,i) => {
+//         recursiveFun(userTable, user.subChild[i]);
+//     });
+//     // for (var i=0;i<user.subChild.length; i++)
+//     //     recursiveFun(userTable, user.subChild[i]);
+// }
+
+// function getTreeOfMemberId(userTable, memberID){    
+//      var finalObj;
+//      finalObj = userTable.filter(x=>x.parentId == memberID)
+//      recursiveFun(userTable, finalObj);
+//      return finalObj;
+// }
+// let data = getTreeOfMemberId(userTable, 1)
+// console.log('data', data);
+    
