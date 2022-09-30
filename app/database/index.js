@@ -17,9 +17,8 @@ var connectionOptions = {
 	connectTimeoutMS:20000,
 	ha:true,
 	haInterval:10000,
-	autoReconnect:true,
-	reconnectInterval:2000,
-	useFindAndModify:false
+	useFindAndModify:false,
+	useUnifiedTopology: true
 	
 };
 //mongoose.set('debug', true);

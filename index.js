@@ -7,7 +7,7 @@ var path 		= require('path');
 var flash 		= require('connect-flash');
 const winston = require('winston')
 // Chat application components
-// require('./app/startup/logging')();
+require('./app/startup/logging')();
  require('./app/startup/routes')(app);
 const error = require('./app/startup/error');
 var session 	= require('./app/session');
